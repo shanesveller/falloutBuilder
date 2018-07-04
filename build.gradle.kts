@@ -21,6 +21,7 @@ version = "0.1-SNAPSHOT"
 
 apply {
     plugin("kotlin")
+    plugin("groovy")
 }
 
 val kotlin_version: String by extra
@@ -37,7 +38,9 @@ dependencies {
     compile("org.drools", "drools-core", droolsVersion)
     compile("org.drools", "drools-compiler", droolsVersion)
     testCompile("junit", "junit", "4.12")
+    testCompile("org.codehaus.groovy", "groovy", "2.5.0")
     testCompile("org.optaplanner", "optaplanner-test", droolsVersion)
+    testCompile("org.spockframework", "spock-core", "1.1-groovy-2.4")
 }
 
 configure<JavaPluginConvention> {
