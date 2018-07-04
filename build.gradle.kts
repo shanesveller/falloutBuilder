@@ -25,13 +25,19 @@ apply {
 
 val kotlin_version: String by extra
 
+val droolsVersion = "7.7.0.Final"
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
     compile(kotlinModule("stdlib-jdk8", kotlin_version))
+    compile("org.optaplanner", "optaplanner-core", droolsVersion)
+    compile("org.drools", "drools-core", droolsVersion)
+    compile("org.drools", "drools-compiler", droolsVersion)
     testCompile("junit", "junit", "4.12")
+    testCompile("org.optaplanner", "optaplanner-test", droolsVersion)
 }
 
 configure<JavaPluginConvention> {
