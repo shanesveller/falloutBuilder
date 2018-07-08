@@ -37,7 +37,7 @@ object CharacterSpec : Spek({
         val character = Character()
 
         given("a new, valid, qualified perk") {
-            val perk = Perk("Iron Fist", 1, SpecialAttribute.STRENGTH, 1, 0)
+            val perk = PerkList.elementAt(0)
 
             it("can add the perk") {
                 character.addPerk(perk)
@@ -45,7 +45,7 @@ object CharacterSpec : Spek({
         }
 
         given("a new, valid, unqualified perk") {
-            val perk = Perk("Iron Fist", 5, SpecialAttribute.STRENGTH, 1, 46)
+            val perk = PerkList.elementAt(1)
 
             it("cannot add the perk") {
                 assertFailsWith(IllegalArgumentException::class) { character.addPerk(perk) }
