@@ -6,4 +6,10 @@ data class Perk(
         val attribute: SpecialAttribute,
         val attributeRank: Int,
         val characterLevel: Int
-)
+) {
+    fun isQualifiedCharacter(character: Character): Boolean {
+//        val (characterLevel, strength, perception, endurance, charisma, intellect, agility, luck, existingPerks ) = character
+
+        return character.level >= this.characterLevel
+    }
+}
