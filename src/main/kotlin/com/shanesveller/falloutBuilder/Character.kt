@@ -18,4 +18,8 @@ data class Character(
             else -> throw IllegalArgumentException("This perk does not exist in game")
         }
     }
+
+    fun isValid(): Boolean {
+        return this.level >= 1 && this.attributes.size == 7 && this.perks.all { it.isValid() }
+    }
 }
