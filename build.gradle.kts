@@ -1,54 +1,21 @@
-import org.gradle.api.plugins.ExtensionAware
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-buildscript {
-    var kotlin_version: String by extra
-    kotlin_version = "1.2.50"
-
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath(kotlinModule("gradle-plugin", kotlin_version))
-    }
-}
 
 plugins {
-    java
+    kotlin("jvm") version "1.2.51"
 }
-
-group = "com.shanesveller"
-version = "0.1-SNAPSHOT"
-
-apply {
-    // plugin("java")
-    plugin("kotlin")
-}
-
-/*
-test {
-    filters {
-        engines {
-            include("spek")
-        }
-    }
-}
-*/
-
-val kotlin_version: String by extra
-
-val droolsVersion = "7.7.0.Final"
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    compile(kotlinModule("stdlib-jdk8", kotlin_version))
-    compile(kotlinModule("reflect", kotlin_version))
-    compile(kotlinModule("test", kotlin_version))
-    compile(kotlinModule("test-junit", kotlin_version))
+val droolsVersion = "7.7.0.Final"
 
+dependencies {
+    compile(kotlin("stdlib"))
+    compile(kotlin("test"))
+    compile(kotlin("test-junit"))
+    testRuntime(kotlin("reflect"))
+
+    // OptaPlanner
     compile("org.optaplanner", "optaplanner-core", droolsVersion)
     compile("org.drools", "drools-core", droolsVersion)
     compile("org.drools", "drools-compiler", droolsVersion)
@@ -69,9 +36,12 @@ dependencies {
     }
 }
 
-configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-}
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+val test by tasks.getting(Test::class) {
+    useJUnitPlatform {
+        includeEngines("spek")
+    }
+
+    testLogging {
+        events("PASSED", "FAILED", "SKIPPED")
+    }
 }
