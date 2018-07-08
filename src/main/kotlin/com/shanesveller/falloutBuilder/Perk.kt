@@ -8,8 +8,18 @@ data class Perk(
         val characterLevel: Int
 ) {
     fun isQualifiedCharacter(character: Character): Boolean {
-//        val (characterLevel, strength, perception, endurance, charisma, intellect, agility, luck, existingPerks ) = character
+        val (characterLevel, specialAttributes, existingPerks) = character
 
-        return character.level >= this.characterLevel
+        val levelQualifies = characterLevel >= this.characterLevel
+
+        val specialQualifies = when(specialAttributes[this.attribute]) {
+            in this.attributeRank.rangeTo(10) -> true
+            else -> false
+        }
+
+        val notDuplicate = !existingPerks.contains(this)
+
+        return levelQualifies && specialQualifies && notDuplicate
+    }
     }
 }
