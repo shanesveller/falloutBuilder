@@ -23,7 +23,6 @@ version = "0.1-SNAPSHOT"
 apply {
     // plugin("java")
     plugin("kotlin")
-    plugin("groovy")
 }
 
 /*
@@ -53,7 +52,6 @@ dependencies {
     compile("org.optaplanner", "optaplanner-core", droolsVersion)
     compile("org.drools", "drools-core", droolsVersion)
     compile("org.drools", "drools-compiler", droolsVersion)
-    testCompile("org.codehaus.groovy", "groovy", "2.5.0")
     testCompile("org.optaplanner", "optaplanner-test", droolsVersion)
 
     // JUnit 5
@@ -69,8 +67,6 @@ dependencies {
         exclude(group = "org.junit.platform")
         exclude(group = "org.jetbrains.kotlin")
     }
-    // Spock
-    testCompile("org.spockframework", "spock-core", "1.1-groovy-2.4")
 }
 
 configure<JavaPluginConvention> {
