@@ -10,6 +10,10 @@ object CharacterSpec : Spek({
     given("a new character") {
         val character = Character()
 
+        it("supports validation") {
+            assert(character.isValid())
+        }
+
         given("a character with a different level") {
             val otherCharacter = Character(level = 2)
 

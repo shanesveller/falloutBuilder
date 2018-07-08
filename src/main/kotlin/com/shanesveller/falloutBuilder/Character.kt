@@ -7,7 +7,7 @@ fun newAttributeMap(initialRank: Int): MutableMap<SpecialAttribute, Int> {
 data class Character(
         val level: Int = 1,
         var attributes: MutableMap<SpecialAttribute, Int> = newAttributeMap(1),
-        var perks: MutableList<Perk> = mutableListOf()
+        var perks: MutableSet<Perk> = mutableSetOf()
 ) {
     fun addPerk(perk: Perk) {
         when (perk) {
