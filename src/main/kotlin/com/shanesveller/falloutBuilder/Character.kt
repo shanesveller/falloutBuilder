@@ -1,13 +1,11 @@
 package com.shanesveller.falloutBuilder
 
+fun newAttributeMap(initialRank: Int) : MutableMap<SpecialAttribute, Int> {
+    return enumValues<SpecialAttribute>().fold(mapOf<SpecialAttribute, Int>()) { thisMap, specialAttribute -> thisMap.plus(Pair(specialAttribute, initialRank)) }.toMutableMap()
+}
+
 data class Character(
         val level: Int = 1,
-        val strength: Int = 1,
-        val perception: Int = 1,
-        val endurance: Int = 1,
-        val charisma: Int = 1,
-        val intellect: Int = 1,
-        val agility: Int = 1,
-        val luck: Int = 1,
+        var attributes: MutableMap<SpecialAttribute, Int> = newAttributeMap(1),
         var perks: MutableList<Perk> = mutableListOf()
 )

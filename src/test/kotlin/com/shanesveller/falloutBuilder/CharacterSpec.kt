@@ -17,12 +17,14 @@ object CharacterSpec : Spek({
             }
         }
 
-        // Can this be templated?
-        given("a character with a different stat") {
-            val otherCharacter = Character(strength = 2)
+        enumValues<SpecialAttribute>().forEach {
+            given("a character with a different $it stat") {
+                val otherCharacter = Character()
+                otherCharacter.attributes[it] = 2
 
-            it("should compare stats") {
-                assertFalse { character == otherCharacter }
+                it("should compare stats") {
+                    assertFalse { character == otherCharacter }
+                }
             }
         }
     }
