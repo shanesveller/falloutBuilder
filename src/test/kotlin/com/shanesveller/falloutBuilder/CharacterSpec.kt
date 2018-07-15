@@ -37,7 +37,7 @@ object CharacterSpec : Spek({
         val character = Character()
 
         given("a new, valid, qualified perk") {
-            val perk = PerkList.elementAt(0)
+            val perk = PerkList.elementAt(45) // Cap Collector 1
 
             it("can add the perk") {
                 character.addPerk(perk)
