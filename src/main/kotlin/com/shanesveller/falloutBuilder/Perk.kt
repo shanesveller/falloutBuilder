@@ -17,9 +17,13 @@ data class Perk(
             else -> false
         }
 
+        val previousRanksPresent = character.hasPreviousPerks(this)
+
         val notDuplicate = !existingPerks.contains(this)
 
-        return levelQualifies && specialQualifies && notDuplicate
+        println(character)
+
+        return levelQualifies && specialQualifies && previousRanksPresent && notDuplicate
     }
 
     fun isValid(): Boolean {
@@ -65,5 +69,9 @@ data class Perk(
         }
 
         return errors.toList()
+    }
+
+    fun previousRanks(): List<Perk> {
+        return PerkList.filter { it.name == this.name && it.rank < this.rank }.sortedBy { it.rank }
     }
 }

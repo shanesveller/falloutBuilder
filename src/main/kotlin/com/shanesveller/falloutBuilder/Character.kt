@@ -22,4 +22,6 @@ data class Character(
     fun isValid(): Boolean {
         return this.level >= 1 && this.attributes.size == 7 && this.perks.all { it.isValid() }
     }
+
+    fun hasPreviousPerks(perk: Perk) : Boolean = perk.rank == 1 || perk.previousRanks().all { this.perks.contains(it) }
 }
